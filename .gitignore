@@ -2,5 +2,6 @@ __pycache__/
 *.pkl
 *.json
 mlruns/
+mlflow.db
 guias/
 .venv/
