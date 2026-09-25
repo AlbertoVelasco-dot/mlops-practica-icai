@@ -5,3 +5,4 @@ mlruns/
 mlflow.db
 guias/
 .venv/
+.env
