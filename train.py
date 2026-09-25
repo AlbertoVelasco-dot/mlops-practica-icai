@@ -7,10 +7,15 @@ import joblib
 import mlflow
 import mlflow.sklearn
 
-# Cargar el conjunto de datos
-iris = datasets.load_iris()
-X = iris.data
-y = iris.target
+# Cargar el conjunto de datos desde el archivo CSV
+try:
+    iris = pd.read_csv("data/iris_dataset.csv")
+except FileNotFoundError:
+    print("Error: El archivo 'data/iris_dataset.csv' no fue encontrado.")
+
+# Dividir el DataFrame en características (X) y etiquetas (y)
+X = iris.drop("target", axis=1)
+y = iris["target"]
 
 # Iniciar un experimento de MLflow
 with mlflow.start_run():
@@ -28,7 +33,7 @@ with mlflow.start_run():
     accuracy = accuracy_score(y_test, y_pred)
 
     # Guardar el modelo entrenado en un archivo .pkl
-    joblib.dump(model, 'model.pkl')
+    joblib.dump(model, "model.pkl")
 
     # Registrar el modelo con MLflow
     mlflow.sklearn.log_model(model, "random-forest-model")
