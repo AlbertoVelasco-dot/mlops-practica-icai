@@ -6,4 +6,5 @@ mlflow.db
 guias/
 .venv/
 .env
+.envrc
 /confusion_matrix.png
