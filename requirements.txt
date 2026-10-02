@@ -1,7 +1,10 @@
 scikit-learn==1.4.0
 pandas==2.2.2
 numpy==1.26.4
-dvc[s3]==3.67.1
+dvc[s3]
 mlflow
 matplotlib
 seaborn
+fastapi
+uvicorn[standard]
+streamlit
