@@ -89,8 +89,14 @@ jobs:
           version: 'latest'
           install_components: 'gke-gcloud-auth-plugin'
 
+      # Acción oficial en lugar de "gcloud container clusters get-credentials":
+      # escribe el token en el kubeconfig y evita que kubectl dependa de gke-gcloud-auth-plugin
       - name: Get GKE credentials
-        run: gcloud container clusters get-credentials ${{ vars.GKE_CLUSTER }} --zone ${{ vars.GKE_ZONE }} --project ${{ vars.GCP_PROJECT_ID }}
+        uses: 'google-github-actions/get-gke-credentials@v2'
+        with:
+          cluster_name: ${{ vars.GKE_CLUSTER }}
+          location: ${{ vars.GKE_ZONE }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
       - name: DVC Pull
         env:
