@@ -8,3 +8,4 @@ seaborn
 fastapi
 uvicorn[standard]
 streamlit
+pyarrow==13.0.0
